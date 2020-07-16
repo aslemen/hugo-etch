@@ -1,11 +1,24 @@
 <header id="banner">
-    <h2><a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h2>
+    <h2><a href="{{ .Site.BaseURL | absLangURL }}">{{ .Site.Title }}</a></h2>
     <nav>
         <ul>
             {{ range .Site.Menus.main.ByWeight }}
             <li>
                 {{ .Pre }}<a href="{{ .URL }}" title="{{ .Title }}">{{- .Name -}}</a>{{ .Post }}
             </li>
+            {{ end }}
+            
+        </ul>
+    </nav>
+    <nav>
+        <ul>
+            <!-- Language Switcher -->
+            {{ range .Translations }}
+                <li>
+                    <a href="{{ .Page.RelPermalink }}">
+                        {{ .Language.LanguageName }}
+                    </a>
+                </li>
             {{ end }}
         </ul>
     </nav>
